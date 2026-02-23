@@ -1,6 +1,6 @@
 import axios from 'axios'; // To make api calls
 
-const url = "http://localhost:5000/posts";
+const url = "http://localhost:5001/posts";
 
 export const fetchPosts = () => axios.get(url); // localhost:5000/posts returns all the posts that we have in the database
 
