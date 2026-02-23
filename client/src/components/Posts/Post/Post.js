@@ -1,47 +1,103 @@
 import React from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import {
+    Card, CardActions, CardContent, Button, Typography,
+    IconButton, Divider, Chip, Box
+} from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import EditIcon from '@material-ui/icons/Edit';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import SpeedIcon from '@material-ui/icons/Speed';
+import MemoryIcon from '@material-ui/icons/Memory';
+import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
 import useStyles from './styles';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-// import algorithms from '../../../images/algo.png';
 
 import { deletePost } from '../../../actions/posts';
-// import useStyles from './styles';
 
 const Post = ({ post, setCurrentId }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
-    return(
-        <Card className={classes.card}>
-            <CardMedia className={classes.media} timeComplexity = {post.timeComplexity} spaceComplexity = {post.spaceComplexity} description = {post.description} />
-            <div className={classes.overlay}>
-                <Typography variant="h6">{post.algoName}</Typography>
-                <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
-                {/* <img className={classes.image} src={algorithms} alt="icon" height="200" /> */}
+    return (
+        <Card className={classes.card} elevation={0}>
+            {/* Header — date/time + edit */}
+            <div className={classes.header}>
+                <div className={classes.dateRow}>
+                    <AccessTimeIcon className={classes.dateIcon} />
+                    <div>
+                        <Typography className={classes.date}>
+                            {moment(post.createdAt).format('MMMM D, YYYY')}
+                        </Typography>
+                        <Typography className={classes.time}>
+                            {moment(post.createdAt).format('h:mm A')}
+                        </Typography>
+                    </div>
+                </div>
+                <IconButton size="small" className={classes.editBtn} onClick={() => setCurrentId(post._id)}>
+                    <EditIcon fontSize="small" />
+                </IconButton>
             </div>
-            <div className={classes.overlay2}>
-                <Button style={{color:'white'}} size="small" onClick={() => setCurrentId(post._id)}>
-                    <MoreHorizIcon fontSize="default" />
-                </Button>
-            </div>
-            <Typography className={classes.timeComplexity} variant="h6" gutterBottom>{post.timeComplexity}</Typography>
-            <Typography className={classes.spaceComplexity} variant="h6" gutterBottom>{post.spaceComplexity}</Typography>
 
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p" >{post.description}</Typography>
-                
+            {/* Title */}
+            <div className={classes.titleSection}>
+                <Typography className={classes.algoName} variant="h5">
+                    {post.algoName}
+                </Typography>
+            </div>
+
+            <Divider className={classes.divider} />
+
+            {/* Complexity chips */}
+            <div className={classes.complexitySection}>
+                <Chip
+                    icon={<SpeedIcon className={classes.chipIcon} />}
+                    label={`Time: ${post.timeComplexity || '—'}`}
+                    className={classes.chipTime}
+                    size="small"
+                />
+                <Chip
+                    icon={<MemoryIcon className={classes.chipIcon} />}
+                    label={`Space: ${post.spaceComplexity || '—'}`}
+                    className={classes.chipSpace}
+                    size="small"
+                />
+            </div>
+
+            {/* Description section */}
+            <CardContent className={classes.descriptionSection}>
+                <Typography className={classes.sectionLabel}>Description</Typography>
+                <Typography className={classes.descriptionText}>
+                    {post.description || 'No description provided.'}
+                </Typography>
             </CardContent>
-            <CardActions className={classes.cardActions}>
-                {/* <Button size="small" color="primary" onClick={() => }>
-                    <ThumbUpAltIcon fontSize="small" />
 
-                </Button> */}
-                <Button size="small" color="primary" onClick={() => dispatch(deletePost(post._id)) }>
-                    <DeleteIcon fontSize="small" />
+            {/* Use Case section */}
+            {post.useCase && (
+                <Box className={classes.useCaseSection}>
+                    <EmojiObjectsIcon className={classes.useCaseIcon} />
+                    <div>
+                        <Typography className={classes.sectionLabel}>Use Case</Typography>
+                        <Typography className={classes.useCaseText}>
+                            {post.useCase}
+                        </Typography>
+                    </div>
+                </Box>
+            )}
+
+            <Divider className={classes.divider} />
+
+            {/* Footer */}
+            <CardActions className={classes.cardActions}>
+                <Typography className={classes.relativeTime}>
+                    {moment(post.createdAt).fromNow()}
+                </Typography>
+                <Button
+                    size="small"
+                    className={classes.deleteBtn}
+                    onClick={() => dispatch(deletePost(post._id))}
+                    startIcon={<DeleteIcon />}
+                >
                     Delete
                 </Button>
             </CardActions>

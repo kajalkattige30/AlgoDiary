@@ -1,13 +1,14 @@
 import mongoose from 'mongoose';
 const postSchema = mongoose.Schema({
-    algoName : String,
-    timeComplexity : String,
-    spaceComplexity : String,
-    description : String,
-    selectedFile : String, // Converting an image into a string using base 64
+    algoName: String,
+    timeComplexity: String,
+    spaceComplexity: String,
+    description: String,
+    useCase: String,
+    selectedFile: String, // Converting an image into a string using base 64
     createdAt: {
-        type : Date,
-        default : new Date(),
+        type: Date,
+        default: new Date(),
     },
 });
 
