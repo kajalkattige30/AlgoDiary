@@ -9,7 +9,6 @@ const router = express.Router();
 export const getPosts = async (req, res) => {
     try {
         const postMessages = await PostMessage.find();
-        // console.log(postMessages);
         res.status(200).json(postMessages);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -17,9 +16,25 @@ export const getPosts = async (req, res) => {
 }
 
 export const createPost = async (req, res) => {
-    // const post = req.body;
-    const { algoName, description, timeComplexity, spaceComplexity, useCase } = req.body;
-    const newPostMessage = new PostMessage({ algoName, description, timeComplexity, spaceComplexity, useCase });
+    const {
+        entryType,
+        description,
+        // Algorithm fields
+        algoName, timeComplexity, spaceComplexity, useCase,
+        // Pattern fields
+        patternName, whenToUse, inputStructures, relatedAlgorithms, exampleProblems,
+        // Insights (shared)
+        bruteForce, optimalApproach, complexityImprovement,
+    } = req.body;
+
+    const newPostMessage = new PostMessage({
+        entryType,
+        description,
+        algoName, timeComplexity, spaceComplexity, useCase,
+        patternName, whenToUse, inputStructures, relatedAlgorithms, exampleProblems,
+        bruteForce, optimalApproach, complexityImprovement,
+    });
+
     try {
         await newPostMessage.save();
         res.status(201).json(newPostMessage);
@@ -28,17 +43,30 @@ export const createPost = async (req, res) => {
     }
 }
 
-
-
-
 export const updatePost = async (req, res) => {
     const { id } = req.params;
-    const { algoName, description, timeComplexity, spaceComplexity, useCase } = req.body;
+    const {
+        entryType,
+        description,
+        // Algorithm fields
+        algoName, timeComplexity, spaceComplexity, useCase,
+        // Pattern fields
+        patternName, whenToUse, inputStructures, relatedAlgorithms, exampleProblems,
+        // Insights (shared)
+        bruteForce, optimalApproach, complexityImprovement,
+    } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
+    const updatedPost = {
+        entryType,
+        description,
+        algoName, timeComplexity, spaceComplexity, useCase,
+        patternName, whenToUse, inputStructures, relatedAlgorithms, exampleProblems,
+        bruteForce, optimalApproach, complexityImprovement,
+        _id: id,
+    };
 
-    const updatedPost = { algoName, description, timeComplexity, spaceComplexity, useCase, _id: id };
     await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
     res.json(updatedPost);
 }

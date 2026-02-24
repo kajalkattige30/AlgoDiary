@@ -30,6 +30,59 @@ export default makeStyles((theme) => ({
   dialogContent: {
     padding: '12px 28px',
   },
+
+  /* ─── Entry‑Type Toggle ─── */
+  typeToggleWrap: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  typeToggle: {
+    borderRadius: 14,
+    backgroundColor: 'rgba(200, 180, 210, 0.1)',
+    border: '1px solid rgba(200, 180, 210, 0.2)',
+    overflow: 'hidden',
+    '& .MuiToggleButtonGroup-groupedHorizontal:not(:first-child)': {
+      borderLeft: '1px solid rgba(200, 180, 210, 0.2)',
+      marginLeft: 0,
+    },
+  },
+  toggleButton: {
+    textTransform: 'none',
+    fontWeight: 500,
+    fontSize: 14,
+    color: '#7a6d8a',
+    padding: '8px 24px',
+    border: 'none',
+    transition: 'all 0.25s ease',
+    '&.Mui-selected': {
+      background: 'linear-gradient(135deg, #c9a7c7 0%, #a7b5d7 100%)',
+      color: '#fff',
+      fontWeight: 600,
+      boxShadow: '0 2px 10px rgba(180, 160, 200, 0.3)',
+      '&:hover': {
+        background: 'linear-gradient(135deg, #b896b6 0%, #96a4c6 100%)',
+      },
+    },
+    '&:hover': {
+      backgroundColor: 'rgba(200, 180, 210, 0.15)',
+    },
+  },
+
+  /* ─── Section Divider ─── */
+  sectionDivider: {
+    backgroundColor: 'rgba(200, 180, 210, 0.25)',
+    margin: '8px 0 16px',
+  },
+  sectionHeading: {
+    fontSize: 13,
+    fontWeight: 600,
+    color: '#7a6d8a',
+    marginBottom: 14,
+    letterSpacing: '0.3px',
+  },
+
+  /* ─── Text Fields ─── */
   field: {
     marginBottom: 16,
     '& .MuiOutlinedInput-root': {

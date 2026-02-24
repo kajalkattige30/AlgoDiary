@@ -66,6 +66,27 @@ export default makeStyles((theme) => ({
     color: '#3d3050',
     letterSpacing: '-0.3px',
     lineHeight: 1.3,
+    marginTop: 8,
+  },
+
+  /* ─── Type Badges ─── */
+  typeBadgeAlgo: {
+    backgroundColor: 'rgba(167, 181, 215, 0.15)',
+    color: '#6b7a9b',
+    fontWeight: 600,
+    fontSize: 11,
+    borderRadius: 8,
+    border: '1px solid rgba(167, 181, 215, 0.25)',
+    height: 24,
+  },
+  typeBadgePattern: {
+    backgroundColor: 'rgba(200, 167, 199, 0.15)',
+    color: '#8b6a8b',
+    fontWeight: 600,
+    fontSize: 11,
+    borderRadius: 8,
+    border: '1px solid rgba(200, 167, 199, 0.25)',
+    height: 24,
   },
 
   /* ─── Dividers ─── */
@@ -102,6 +123,16 @@ export default makeStyles((theme) => ({
     marginLeft: '6px !important',
   },
 
+  /* ─── Input Structure Chip (Pattern) ─── */
+  inputChip: {
+    backgroundColor: 'rgba(186, 200, 160, 0.15)',
+    color: '#6a7a5c',
+    fontWeight: 500,
+    fontSize: 12,
+    borderRadius: 10,
+    border: '1px solid rgba(186, 200, 160, 0.3)',
+  },
+
   /* ─── Description ─── */
   descriptionSection: {
     padding: '14px 22px 8px !important',
@@ -135,6 +166,70 @@ export default makeStyles((theme) => ({
   useCaseText: {
     fontSize: 13,
     color: '#6b5c7a',
+    lineHeight: 1.6,
+  },
+
+  /* ─── Pattern Sections ─── */
+  patternSection: {
+    display: 'flex',
+    gap: 10,
+    padding: '8px 22px 12px',
+    alignItems: 'flex-start',
+  },
+  exampleSection: {
+    padding: '8px 22px 16px',
+  },
+  exampleList: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 4,
+  },
+  exampleItem: {
+    fontSize: 13,
+    color: '#6b5c7a',
+    lineHeight: 1.5,
+    paddingLeft: 4,
+  },
+
+  /* ─── Insights Section ─── */
+  insightsSection: {
+    padding: '16px 22px',
+    backgroundColor: 'rgba(219, 168, 109, 0.06)',
+    borderRadius: 0,
+  },
+  insightsHeading: {
+    fontSize: 11,
+    fontWeight: 700,
+    color: '#c9956a',
+    textTransform: 'uppercase',
+    letterSpacing: '1.2px',
+    marginBottom: 12,
+  },
+  insightRow: {
+    display: 'flex',
+    gap: 10,
+    marginBottom: 10,
+    alignItems: 'flex-start',
+    '&:last-child': {
+      marginBottom: 0,
+    },
+  },
+  insightMarker: {
+    fontSize: 14,
+    marginTop: 1,
+    flexShrink: 0,
+  },
+  insightLabel: {
+    fontSize: 10,
+    fontWeight: 700,
+    color: '#b0a3bb',
+    textTransform: 'uppercase',
+    letterSpacing: '1px',
+    marginBottom: 2,
+  },
+  insightText: {
+    fontSize: 13,
+    color: '#5a5070',
     lineHeight: 1.6,
   },
 
